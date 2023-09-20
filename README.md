@@ -27,19 +27,18 @@ Let's dive into the code for the Tokening Smart Contract
 pragma solidity ^0.8.0;
 
 contract Tokening {
-    string public tokenName = "Code";
-    string public tokenSymbol = "Super Code";
+    string public tokenName = "bitcoin";
+    string public tokenSymbol = "BTC";
     uint256 public totalSupply = 0;
     mapping(address => uint256) public balances;
 
     function mint(address _to, uint256 _value) external {
-        require(_to != address(0), "Invalid address");
         totalSupply += _value;
         balances[_to] += _value;
     }
 
     function burn(uint256 _value) external {
-        require(balances[msg.sender] >= _value, "Insufficient balance");
+        require(balances[msg.sender] >= _value, "Sorry! You Don't Have Enough Money");
         totalSupply -= _value;
         balances[msg.sender] -= _value;
     }
@@ -60,8 +59,8 @@ pragma solidity ^0.8.0; indicates that the contract is written in Solidity versi
 ### 2. Contract Declaration
 ```contract MyToken {
     // Variables
-    string public tokenName = "Code";
-    string public tokenSymbol = "Super Code";
+    string public tokenName = "bitcoin";
+    string public tokenSymbol = "BTC";
     uint256 public totalSupply = 0;
 ```
 "Tokening" is the name of the Solidity contract.
@@ -74,7 +73,6 @@ balances is a mapping that associates Ethereum addresses (users) with their toke
 ## Mint Function:
     // Mint Function
     function mint(address _to, uint256 _value) external {
-        require(_to != address(0), "Invalid address");
         totalSupply += _value;
         balances[_to] += _value;
     }
@@ -84,7 +82,7 @@ It increases the totalSupply and adds _value tokens to the recipient's balance.
 ## Burn Function:
     // Burn Function
     function burn(uint256 _value) external {
-        require(balances[msg.sender] >= _value, "Insufficient balance");
+        require(balances[msg.sender] >= _value, "Sorry! You Don't Have Enough Money");
         totalSupply -= _value;
         balances[msg.sender] -= _value;
     }
@@ -98,9 +96,9 @@ License: This contract is released under the MIT License, as indicated in the li
 ### Solidity Version: The contract is written in Solidity version 0.8.18, ensuring compatibility with the specified version.
 
 ### State Variables
-tokenName: This is a public string variable set to "Code" It represents the name of our token.
+tokenName: This is a public string variable set to "bitcoin" It represents the name of our token.
 
-tokenSymbol: Another public string variable set to "Super Code" This variable represents the symbol or ticker of our token.
+tokenSymbol: Another public string variable set to "BTC" This variable represents the symbol or ticker of our token.
 
 totalSupply: A public uint256 variable initialized to 0. It keeps track of the total supply of our token.
 
